@@ -14,7 +14,7 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace FunctionApp
+namespace FunctionApp.HttpTriggers
 {
     public static class AuthCodeAuthFlowHttpTrigger
     {
