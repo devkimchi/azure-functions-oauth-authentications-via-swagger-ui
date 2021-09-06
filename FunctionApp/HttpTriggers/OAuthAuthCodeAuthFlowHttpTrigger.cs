@@ -16,9 +16,9 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionApp.HttpTriggers
 {
-    public static class AuthCodeAuthFlowHttpTrigger
+    public static class OAuthAuthCodeAuthFlowHttpTrigger
     {
-        [FunctionName(nameof(AuthCodeAuthFlowHttpTrigger))]
+        [FunctionName(nameof(OAuthAuthCodeAuthFlowHttpTrigger))]
         [OpenApiOperation(operationId: "oauth.flows.authcode", tags: new[] { "oauth" }, Summary = "OAuth authentication code flows", Description = "This shows the OAuth authentication code flows", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiSecurity("authcode_auth", SecuritySchemeType.OAuth2, Flows = typeof(AuthCodeAuthFlow))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<string, string>), Summary = "successful operation", Description = "successful operation")]

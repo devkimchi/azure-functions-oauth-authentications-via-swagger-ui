@@ -18,9 +18,9 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionApp.HttpTriggers
 {
-    public static class ImplicitAuthFlowHttpTrigger
+    public static class OAuthImplicitAuthFlowHttpTrigger
     {
-        [FunctionName(nameof(ImplicitAuthFlowHttpTrigger))]
+        [FunctionName(nameof(OAuthImplicitAuthFlowHttpTrigger))]
         [OpenApiOperation(operationId: "oauth.flows.implicit", tags: new[] { "oauth" }, Summary = "OAuth implicit flows", Description = "This shows the OAuth implicit flows", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiSecurity("implicit_auth", SecuritySchemeType.OAuth2, Flows = typeof(ImplicitAuthFlow))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(IEnumerable<string>), Summary = "successful operation", Description = "successful operation")]
