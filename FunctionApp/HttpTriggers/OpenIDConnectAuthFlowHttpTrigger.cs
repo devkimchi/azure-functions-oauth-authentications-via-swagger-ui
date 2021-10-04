@@ -15,19 +15,19 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionApp.HttpTriggers
 {
-    public static class HttpBearerAuthFlowHttpTrigger
+    public static class OpenIDConnectAuthFlowHttpTrigger
     {
-        [FunctionName(nameof(HttpBearerAuthFlowHttpTrigger))]
-        [OpenApiOperation(operationId: "http.bearer", tags: new[] { "http" }, Summary = "Bearer authentication token flow via header", Description = "This shows the bearer authentication token flow via header", Visibility = OpenApiVisibilityType.Important)]
-        [OpenApiSecurity("bearer_auth", SecuritySchemeType.Http, Scheme = OpenApiSecuritySchemeType.Bearer, BearerFormat = "JWT")]
-        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<string, string>), Summary = "successful operation", Description = "successful operation")]
+        [FunctionName(nameof(OpenIDConnectAuthFlowHttpTrigger))]
+        [OpenApiOperation(operationId: "openidconnect", tags: new[] { "oidc" }, Summary = "OpenID Connect auth flows", Description = "This shows the OpenID Connect auth flows", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiSecurity("oidc_auth", SecuritySchemeType.OpenIdConnect, OpenIdConnectUrl = "https://login.microsoftonline.com/{tenant_id}/v2.0/.well-known/openid-configuration", OpenIdConnectScopes = "openid,profile")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(IEnumerable<string>), Summary = "successful operation", Description = "successful operation")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var headers = req.Headers.ToDictionary(q => q.Key, q => (string) q.Value);
+            var headers = req.Headers.ToDictionary(p => p.Key, p => (string) p.Value);
             var handler = new JwtSecurityTokenHandler();
             var token = handler.ReadJwtToken(headers["Authorization"].Split(' ').Last());
             var claims = token.Claims.Select(p => p.ToString());
