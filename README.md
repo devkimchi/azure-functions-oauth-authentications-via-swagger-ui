@@ -10,6 +10,6 @@ To run this sample app on your local machine, you should be able to access [Azur
 
 ## Related Read ##
 
-* 한국어: TBD
-* English: TBD
+* 한국어: [OpenAPI 인증 플로우를 이용한 애저 펑션 엔드포인트 접근 권한 관리](https://blog.aliencube.org/ko/2021/10/06/securing-azure-function-endpoints-via-openapi-auth/)
+* English: [Securing Azure Functions Endpoints via OpenAPI Auth](https://devkimchi.com/2021/10/06/securing-azure-function-endpoints-via-openapi-auth/)
 
