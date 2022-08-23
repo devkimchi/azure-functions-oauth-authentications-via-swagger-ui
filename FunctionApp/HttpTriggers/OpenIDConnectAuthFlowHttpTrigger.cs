@@ -27,7 +27,7 @@ namespace FunctionApp.HttpTriggers
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var headers = req.Headers.ToDictionary(p => p.Key, p => (string) p.Value);
+            var headers = req.Headers.ToDictionary(p => p.Key, p => (string)p.Value);
             var handler = new JwtSecurityTokenHandler();
             var token = handler.ReadJwtToken(headers["Authorization"].Split(' ').Last());
             var claims = token.Claims.Select(p => p.ToString());

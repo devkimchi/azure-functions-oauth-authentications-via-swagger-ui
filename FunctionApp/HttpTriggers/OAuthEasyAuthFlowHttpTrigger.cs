@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
-using FunctionApp.SecurityFlows;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +15,10 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionApp.HttpTriggers
 {
-    public static class OAuthImplicitAuthFlowHttpTrigger
+    public static class OAuthEasyAuthFlowHttpTrigger
     {
-        [FunctionName(nameof(OAuthImplicitAuthFlowHttpTrigger))]
-        [OpenApiOperation(operationId: "oauth.flows.implicit", tags: new[] { "oauth" }, Summary = "OAuth implicit flows", Description = "This shows the OAuth implicit flows", Visibility = OpenApiVisibilityType.Important)]
-        [OpenApiSecurity("implicit_auth", SecuritySchemeType.OAuth2, Flows = typeof(ImplicitAuthFlow))]
+        [FunctionName(nameof(OAuthEasyAuthFlowHttpTrigger))]
+        [OpenApiOperation(operationId: "oauth.flows.easyauth", tags: new[] { "oauth" }, Summary = "OAuth easy auth flows", Description = "This shows the OAuth easy auth flows", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(IEnumerable<string>), Summary = "successful operation", Description = "successful operation")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = null)] HttpRequest req,

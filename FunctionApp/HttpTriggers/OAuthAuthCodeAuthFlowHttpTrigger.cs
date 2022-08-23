@@ -19,7 +19,7 @@ namespace FunctionApp.HttpTriggers
     public static class OAuthAuthCodeAuthFlowHttpTrigger
     {
         [FunctionName(nameof(OAuthAuthCodeAuthFlowHttpTrigger))]
-        [OpenApiOperation(operationId: "oauth.flows.authcode", tags: new[] { "oauth" }, Summary = "OAuth authentication code flows", Description = "This shows the OAuth authentication code flows", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiOperation(operationId: "oauth.flows.authcode", tags: new[] { "oauth" }, Summary = "OAuth authorisation code flows - PKCE required", Description = "This shows the OAuth authorisation code flows, which needs PCKE required. The current extension doesn't support this flow yet.", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiSecurity("authcode_auth", SecuritySchemeType.OAuth2, Flows = typeof(AuthCodeAuthFlow))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(Dictionary<string, string>), Summary = "successful operation", Description = "successful operation")]
         public static async Task<IActionResult> Run(
@@ -28,7 +28,7 @@ namespace FunctionApp.HttpTriggers
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var headers = req.Headers.ToDictionary(p => p.Key, p => (string) p.Value);
+            var headers = req.Headers.ToDictionary(p => p.Key, p => (string)p.Value);
             var result = new OkObjectResult(headers);
 
             return await Task.FromResult(result).ConfigureAwait(false);

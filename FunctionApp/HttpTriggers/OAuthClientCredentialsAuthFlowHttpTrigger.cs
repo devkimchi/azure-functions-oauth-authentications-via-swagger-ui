@@ -18,11 +18,11 @@ using Microsoft.OpenApi.Models;
 
 namespace FunctionApp.HttpTriggers
 {
-    public static class OAuthImplicitAuthFlowHttpTrigger
+    public static class OAuthClientCredentialsAuthFlowHttpTrigger
     {
-        [FunctionName(nameof(OAuthImplicitAuthFlowHttpTrigger))]
-        [OpenApiOperation(operationId: "oauth.flows.implicit", tags: new[] { "oauth" }, Summary = "OAuth implicit flows", Description = "This shows the OAuth implicit flows", Visibility = OpenApiVisibilityType.Important)]
-        [OpenApiSecurity("implicit_auth", SecuritySchemeType.OAuth2, Flows = typeof(ImplicitAuthFlow))]
+        [FunctionName(nameof(OAuthClientCredentialsAuthFlowHttpTrigger))]
+        [OpenApiOperation(operationId: "oauth.flows.clientcredentials", tags: new[] { "oauth" }, Summary = "OAuth client credentials flows - Not working on SPA like Swagger UI", Description = "This shows the OAuth client credentials flows. Make sure that this auth flow doesn't work on SPA like this Swagger UI.", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiSecurity("clientcredentials_auth", SecuritySchemeType.OAuth2, Flows = typeof(ClientCredentialsAuthFlow))]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(IEnumerable<string>), Summary = "successful operation", Description = "successful operation")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = null)] HttpRequest req,
