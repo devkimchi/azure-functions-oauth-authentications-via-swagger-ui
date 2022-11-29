@@ -59,7 +59,7 @@
       "type": "func",
       "dependsOn": "build (functions)",
       "options": {
-        "cwd": "${workspaceFolder}/FunctionApp/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/FunctionApp/bin/Debug/ne66.0"
       },
       "command": "host start",
       "isBackground": true,
